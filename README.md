@@ -1,1 +1,1 @@
-#Yii2 Widget - CKEditor 5 v12
+# Yii2 Widget - CKEditor 5 v12
