@@ -28,16 +28,10 @@ class CKEditor extends InputWidget{
             unset($this->editorOptions['inline']);
         }
 
-        if (array_key_exists('preset', $this->editorOptions)) {
-            if($this->editorOptions['preset'] == 'basic'){
-                $this->presetBasic();
-            }elseif($this->editorOptions['preset'] == 'standard'){
-                $this->presetStandard();
-            }elseif($this->editorOptions['preset'] == 'full'){
-                $this->presetFull();
-            }
-            unset($this->editorOptions['preset']);
-        }
+        // if (array_key_exists('preset', $this->editorOptions)) {
+        //     $this->presetStandard();
+        //     unset($this->editorOptions['preset']);
+        // }
 
         if($this->_inline && !isset($this->editorOptions['height']))
             $this->editorOptions['height'] = 100;
@@ -46,24 +40,7 @@ class CKEditor extends InputWidget{
             $this->containerOptions['id'] = $this->id.'_inline';
     }
 
-    private function presetBasic(){
-        $options['height'] = 100;
-
-        $options['toolbarGroups'] = [
-            ['name' => 'undo'],
-            ['name' => 'basicstyles', 'groups' => ['basicstyles', 'cleanup']],
-            ['name' => 'colors'],
-            ['name' => 'links', 'groups' => ['links', 'insert']],
-            ['name' => 'others','groups' => ['others', 'about']],
-        ];
-        $options['removeButtons'] = 'Subscript,Superscript,Flash,Table,HorizontalRule,Smiley,SpecialChar,PageBreak,Iframe';
-        $options['removePlugins'] = 'elementspath';
-        $options['resize_enabled'] = false;
-
-
-        $this->editorOptions = ArrayHelper::merge($options, $this->editorOptions);
-    }
-
+  
     private function presetStandard(){
         $options['height'] = 300;
 
@@ -81,34 +58,6 @@ class CKEditor extends InputWidget{
         ];
 
         $options['removeButtons'] = 'Smiley,Iframe';
-
-        if($this->_inline){
-            $options['extraPlugins'] = 'sourcedialog';
-            $options['removePlugins'] = 'sourcearea';
-        }
-
-        $this->editorOptions = ArrayHelper::merge($options, $this->editorOptions);
-    }
-
-
-
-    private function presetFull(){
-        $options['height'] = 400;
-
-        $options['toolbarGroups'] = [
-            ['name' => 'clipboard', 'groups' => ['mode','undo', 'selection', 'clipboard', 'doctools']],
-            ['name' => 'editing', 'groups' => ['find', 'spellchecker', 'tools', 'about']],
-            '/',
-            ['name' => 'paragraph', 'groups' => ['templates', 'list', 'indent', 'align']],
-            ['name' => 'forms'],
-            '/',
-            ['name' => 'styles'],
-            ['name' => 'blocks'],
-            '/',
-            ['name' => 'basicstyles', 'groups' => ['basicstyles', 'colors','cleanup']],
-            ['name' => 'links', 'groups' => ['links', 'insert']],
-            ['name' => 'others'],
-        ];
 
         if($this->_inline){
             $options['extraPlugins'] = 'sourcedialog';
