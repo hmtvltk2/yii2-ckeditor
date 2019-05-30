@@ -3,16 +3,16 @@ if (typeof mihaildev == "undefined" || !mihaildev) {
 }
 
 mihaildev.ckEditor = {
-	registerOnChange: function(id){
+	registerOnChange: function (id) {
 		CKEDITOR.instances[id] && CKEDITOR.instances[id].on('change', function () {
 			CKEDITOR.instances[id].updateElement();
 			jQuery('#' + id).trigger('change');
-			return false;
+			// return false;
 		});
 	},
 	isRegisteredCsrf: false,
-	registerCsrf: function(){
-		if(this.isRegisteredCsrf)
+	registerCsrf: function () {
+		if (this.isRegisteredCsrf)
 			return;
 
 		this.isRegisteredCsrf = true;
@@ -21,7 +21,7 @@ mihaildev.ckEditor = {
 			var form = jQuery('.cke_dialog_ui_input_file iframe').contents().find('form');
 			var csrfName = yii.getCsrfParam();
 			if (!form.find('input[name=' + csrfName + ']').length) {
-				var csrfTokenInput = jQuery('<input/>').attr({'type': 'hidden', 'name': csrfName}).val(yii.getCsrfToken());
+				var csrfTokenInput = jQuery('<input/>').attr({ 'type': 'hidden', 'name': csrfName }).val(yii.getCsrfToken());
 				form.append(csrfTokenInput);
 			}
 		});
